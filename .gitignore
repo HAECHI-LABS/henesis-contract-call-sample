@@ -1,1 +1,7 @@
 node_modules/
+logs/
+environments/*.jar
+.idea/
+.gradle/
+.DS_Store
+build/

@@ -17,6 +17,7 @@ public class ContractCallService implements ContractService {
     private final ParameterSetter parameterSetter;
 
     public void requestMasterWalletContractCall(String blockchainSymbol, String masterWalletId, ContractCallRequestBody contractCallRequestBody) {
+        log.info("Master wallet contract call has been requested.");
         SmartContractJsonObject masterContractCallResult = this.henesisApiClient.masterWalletContractCallHenesisApi(
                 blockchainSymbol,
                 masterWalletId,
@@ -27,6 +28,7 @@ public class ContractCallService implements ContractService {
     }
 
     public void requestUserWalletContractCall(String blockchainSymbol, String masterWalletId, String userWalletId, ContractCallRequestBody contractCallRequestBody) {
+        log.info("User wallet contract call has been requested.");
         SmartContractJsonObject userContractCallResult = this.henesisApiClient.userWalletContractCallHenesisApi(
                 blockchainSymbol,
                 masterWalletId,
