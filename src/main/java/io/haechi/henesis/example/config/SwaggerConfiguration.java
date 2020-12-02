@@ -1,4 +1,4 @@
-package io.haechi.henesis.contract.config;
+package io.haechi.henesis.example.config;
 
 import com.google.common.collect.Ordering;
 import org.springframework.context.annotation.Bean;

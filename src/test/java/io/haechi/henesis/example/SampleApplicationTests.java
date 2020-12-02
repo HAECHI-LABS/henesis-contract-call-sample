@@ -1,4 +1,4 @@
-package io.haechi.henesis.contract;
+package io.haechi.henesis.example;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

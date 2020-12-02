@@ -1,9 +1,13 @@
-package io.haechi.henesis.contract.application.dto;
+package io.haechi.henesis.example.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
+
+/**
+ * SampleController에서 입력받을 body parameter
+ */
 
 @Getter
 @Setter

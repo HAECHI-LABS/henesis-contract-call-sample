@@ -1,4 +1,4 @@
-package io.haechi.henesis.contract.config;
+package io.haechi.henesis.example.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -18,7 +18,7 @@ public class HttpClientConfig {
                 .defaultHeader("X-Henesis-Secret", this.henesisApiProperties.getApiSecret())
                 .defaultHeader("Authorization", this.henesisApiProperties.getAccessToken())
                 .build();
-        restTemplate.setUriTemplateHandler(new DefaultUriBuilderFactory(this.henesisApiProperties.getBaseUrl()));
+        restTemplate.setUriTemplateHandler(new DefaultUriBuilderFactory(this.henesisApiProperties.getEnclaveBaseUrl()));
         return restTemplate;
     }
 }
