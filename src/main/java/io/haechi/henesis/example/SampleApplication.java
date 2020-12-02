@@ -1,6 +1,6 @@
-package io.haechi.henesis.contract;
+package io.haechi.henesis.example;
 
-import io.haechi.henesis.contract.config.HenesisApiProperties;
+import io.haechi.henesis.example.config.HenesisApiProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

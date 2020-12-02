@@ -1,16 +1,20 @@
-package io.haechi.henesis.contract.infra.dto;
+package io.haechi.henesis.example.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.io.Serializable;
 
+/**
+ * Henesis API로부터 받은 응답 오브젝트
+ */
+
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class SmartContractJsonObject implements Serializable {
+public class ContractJsonObject implements Serializable {
     @JsonProperty("id")
     private String id;
     @JsonProperty("blockchain")

@@ -1,4 +1,4 @@
-package io.haechi.henesis.contract.config;
+package io.haechi.henesis.example.config;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -12,8 +12,12 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 @PropertySource(value = "classpath:/application.yaml")
-@ConfigurationProperties("henesis-api-urls")
-public class HenesisApiUrls {
-    private String masterWalletSmartContractCall;
-    private String userWalletSmartContractCall;
+@ConfigurationProperties("henesis")
+public class HenesisApiProperties {
+    private String apiSecret;
+    private String accessToken;
+    private String passphrase;
+    private String enclaveBaseUrl;
+    private String web3Host;
+    private String ercTokenAddress;
 }

@@ -1,4 +1,4 @@
-package io.haechi.henesis.contract.config;
+package io.haechi.henesis.example.config;
 
 import com.google.common.collect.Ordering;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +18,7 @@ public class SwaggerConfiguration {
     @Bean
     public Docket swaggerApi() {
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(swaggerInfo()).select()
-                .apis(RequestHandlerSelectors.basePackage("io.haechi.henesis.contract"))
+                .apis(RequestHandlerSelectors.basePackage("io.haechi.henesis.example"))
                 .paths(PathSelectors.any())
                 .build()
                 .useDefaultResponseMessages(false)
