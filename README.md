@@ -1,55 +1,44 @@
 # Henesis API Smart Contract Call Example
- 이 프로젝트는 스마트 컨트랙트를 호출하기 위해 필요한 Data 필드를 생성하는 법을 설명드리기 위해,
- 예시로 Henesis API의 마스터 지갑에서 스마트 컨트렉트 호출하기 API를 이용하여 작성하였습니다.
+ Henesis API를 활용하여 스마트 컨트랙트 함수 호출하는 방법을 설명하는 예제 코드입니다.
+ ["마스터 지갑에서 스마트 컨트랙트 호출하기"](https://docs.henesis.io/integrate-with-api/api-list/v2/eth-klay/master-wallet/send-transaction-from-master-wallet)를 사용하여 스마트 컨트랙트 함수를 호출합니다.
  
 ## Requirements
+테스트를 하기 위해 아래와 같은 환경이 설치되어 있어야합니다.
 - Docker
 - docker-compose
 - JDK >= 8
-- solidity >= 6
 
-## 설치 방법
-
-- 본 repository를 clone합니다.
-- root 디렉토리에서 다음과 같은 명령어를 입력합니다.
-
+## 실행 방법
+1. 소스코드 다운 받기
+```
+git clone https://github.com/HAECHI-LABS/henesis-contract-call-sample.git
+```
+2. JAR 이미지 생성
+- 샘플 디렉토리로 이동하여 JAR 파일을 생성합니다.
+- 입력 후, `environments` 디렉터리에 contract-call-example.jar 파일이 생성되었는지 확인합니다.
+```
+$ cd henesis-contract-call-sample
+$ ./gradlew bootjar
+```
+3. docker-compose 실행
+- `environments` 폴더로 이동하여 doecker 
+```
+$ cd henesis-contract-call-sample/environments
+$ docker-compose up -d
+Starting enclave  ... done
+Starting contract-call-example ... done
+```
+4. 실행 확인
+- `docker ps` 명령어를 통해 올바르게 서버가 실행되고 있는지 확인합니다. 
  ```
- ./gradlew bootjar
- ```
- - 입력 후, ~/environments 디렉터리에 contract-call-example.jar 파일이 생성되었는지 확인합니다.
-- docker-compose:
-    - local에서 3000, 8080 포트가 사용중이면 해당 포트를 종료하거나, docker-compose.yaml과 ~/resource/application.yaml 에서 실행 포트를 변경합니다.
-    - 터미널에서 다음과 같은 명령어를 입력합니다.
+$ docker ps
+CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS              PORTS                    NAMES
+e5916a9b44bd        contract-call-example       "java -Djava.securit…"   20 minutes ago      Up 20 minutes       0.0.0.0:8080->8080/tcp   henesis-sample
+f2465b4c089a        haechi/sdk-enclave:stable   "docker-entrypoint.s…"   20 minutes ago      Up 20 minutes       0.0.0.0:3000->3000/tcp   enclave
+```
 
-    ```
-    ➜ henesis-contract-call-sample/environments docker-compose up -d
-    Starting enclave  ... done
-    Starting contract-call-example ... done
-    ```
-
-- [http://localhost:8080/api/swagger-ui.html](http://localhost:8080/api/swagger-ui.html) 로 접속하여 각 API를 테스트합니다.
-- 로그를 확인하려면 위 docker-compose.yaml 에 기입한 경로(저장 경로)에서 example_log.log 파일을 확인하거나, 다음과 같은 명령어로 터미널에서 확인합니다.
-
-    ```
-    ➜  henesis-contract-call-sample/environments    docker ps
-    CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS              PORTS                    NAMES
-    e5916a9b44bd        contract-call-example       "java -Djava.securit…"   20 minutes ago      Up 20 minutes       0.0.0.0:8080->8080/tcp   henesis-sample
-    f2465b4c089a        haechi/sdk-enclave:stable   "docker-entrypoint.s…"   20 minutes ago      Up 20 minutes       0.0.0.0:3000->3000/tcp   enclave
-
-    ➜  henesis-contract-call-sample/environments    docker logs -f e5916a9b44bd
-    2020-11-17 01:57:22.107  INFO 1 --- [           main] o.s.b.SpringApplication                  :
-      .   ____          _            __ _ _
-     /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-    ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
-     \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-      '  |____| .__|_| |_|_| |_\__, | / / / /
-     =========|_|==============|___/=/_/_/_/
-     :: Spring Boot ::        (v2.3.4.RELEASE)
-
-    (생략)
-    ```
-## ERC20 토큰 스마트 컨트랙트 호출로 출금하기
-- 스마트 콘트랙트를 호출을 위한 function은 solidity를 활용하여 생성한 wrapper code에서 확인하실 수 있습니다.
+## 스마트 컨트랙트 함수 호출 (ex. ERC20 출금)
+- 스마트 컨트랙트를 호출을 위한 function은 solidity를 활용하여 생성한 wrapper code에서 확인하실 수 있습니다.
 - 자신에게 필요한 solidity를 직접 구축하거나, 오픈 소스를 활용하세요.(ex. OpenZeppelin, etc.)
 - 본 예제에서는 OpenZeppelin(https://github.com/OpenZeppelin/openzeppelin-contracts) solidity 파일을 사용하였으며, 예제에 필요한 function은 미리 생성하였습니다.
     - 명령어의 옵션 등, 보다 자세한 사항은 Web3j Docs(https://docs.web3j.io/getting_started/deploy_interact_smart_contracts/)에서 확인하실 수 있습니다.
@@ -115,4 +104,25 @@ masterWalletId: 3c399fee47be3793c2df3516d11232b3
     "gasLimit": "0xf4240"
   }
 }
+```
+
+## 참고
+1. Swagger 연동
+- API 테스트를 편리하게 할 수 있도록 Swagger를 연동해뒀습니다. 
+- [http://localhost:8080/api/swagger-ui.html](http://localhost:8080/api/swagger-ui.html) 로 접속하여 각 API를 테스트할 수 있습니다.
+
+2. 로그 확인
+- 로그를 확인하려면 `docker-compose.yaml` 에 기입한 경로(저장 경로)에서 `example_log.log` 파일을 확인하거나, `docker logs` 명령어로 로그를 출력합니다.
+- `docker logs`의 파라미터는 container id로 `docker ps`를 통해 확인할 수 있습니다.
+```
+$ docker logs -f e5916a9b44bd
+2020-11-17 01:57:22.107  INFO 1 --- [           main] o.s.b.SpringApplication                  :
+ .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+\\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+ '  |____| .__|_| |_|_| |_\__, | / / / /
+=========|_|==============|___/=/_/_/_/
+:: Spring Boot ::        (v2.3.4.RELEASE)
+(생략)
 ```
