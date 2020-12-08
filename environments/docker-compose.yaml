@@ -1,0 +1,24 @@
+version: '3'
+services:
+  enclave-api:
+    image: haechi/sdk-enclave:stable
+    container_name: enclave
+    ports:
+      - 3000:3000
+    command: npm start
+    environment:
+      - NODE_ENV=test
+
+  contract-call-example:
+    build: .
+    image: contract-call-example
+    container_name: contract-call-example
+    ports:
+      - 8080:8080
+
+    depends_on:
+      - enclave-api
+
+    # {host}:/logs/ # 저장할 경로(host) 설정
+    volumes:
+      - ~/contract-example/logs/:/logs/

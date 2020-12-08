@@ -1,0 +1,23 @@
+spring:
+  url:
+    base: http://contract-call-example:8080
+
+server:
+  servlet:
+    context-path: /api
+
+henesis:
+  api_secret: "MTgAjE4cIuQDAP0sAaOmHksa1mBxv8eT0jauqJxX7k0="
+  access_token: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6ImxhcnJ5QGhhZWNoaS5pbyIsImlkIjoiZDdmMWRkNzgwZDY3MjQ1ZjMzZTAyZDY1NGQ3NTI5MzMiLCJ0eXBlIjoiTE9ORyIsImxvbmdUeXBlIjp0cnVlLCJpc3MiOiJoZW5lc2lzLXdhbGxldC1pZGVudGl0eS1wcm9kLXRlc3RuZXQiLCJpYXQiOjE2MDMyNzg0NDgsImV4cCI6MTYzNDgxNDQ0OH0.wF_VVubhjUfdvibtMDGVI6GWZcrYlcBvclc2UbCKXwAX8Ni7fUyZMNxPwDwPPl--JJiJdukK8YMTQyGbhjNckg"
+  passphrase: "Fhrmdls7!!"
+  enclave_base_url: http://enclave-api:3000/api/v2
+  erc_token_address: "0x0d4c27c49906208fbd9a9f3a43c63ccbd089f3bf"
+  kct_token_address: "0x5ff1e48b489c67366f936ed82978e913debd7ad8"
+
+logging:
+  level:
+    root: info
+  file:
+    name: ./logs/example-log.log
+  pattern:
+    file: '%-5level %d{yy-MM-dd HH:mm:ss}[%thread] [%logger{0}:%line] - %msg%n'
